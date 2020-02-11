@@ -81,3 +81,37 @@ cursor: pointer;
 }
 
 6 - Importar GlobalStyle no App e passar para aplicação <GlobalStyle />
+
+# Utilizando LocalStorage 
+
+1 - Criamos dois métodos componentDidMount e ComponentDidUpdate. 
+
+2 - No ComponentDidMount carregamos os dados e no 
+ComponentDidUpdate salvar os dados no localStorage.
+
+3 - As atualizações acontencem no estado e não nas propriedades, sendo assim o primeiro parâmetro do componentDidUpdate passamos um underline para ignorar as propriedades. Precisamos pegar um estado anterior antes de ser atualizado.
+
+4 - Fazemos uma comparação no componentDidUpdade para ver se o estado mudou do estado atual.
+
+5 - Se atualizado passamos os dados para o localStorage usando o localStorage.setItem('nomedavariaveldoestado') "como o localStorage não aceita array convertemos para string utilizando o método JSON.stringfy(nomedavariaveldoestado);
+
+6 - No componentDidMount buscamos do localStorage utilizando o localStorage.getItem('nomedavariaveldoestado)
+
+7 - Verificamos se existe algo no storage, se sim
+enviamos com this.setState ({nomedavariavel: JSON.parse(nomedavarialvel)})
+
+# Tratando Roteamentor de paginas com react-router-dom
+
+1 - Importar { Link } do react-router-dom
+
+2 - Precisamos passar um parâmetro contendo o o repositório que queremos mostrar os detalhes
+
+3 - No "to" do Link passamos to={`repository/${repository.name}`}
+
+4- Precisamos usar o encode para trasformar a barra da URL
+encondeURIComponent(repository.name)
+
+5 - No arquivo de rotas precisamos informar a rota equivalente que irá receber um parâmetro
+<Route path="/repository/:repository" component={Repository} />
+
+6 - Recebemos no parâmetro da função Repository o{match} 
