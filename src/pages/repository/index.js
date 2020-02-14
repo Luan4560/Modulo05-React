@@ -43,7 +43,7 @@ class Repository extends Component {
   }
 
   render() {
-    const { repository, loading } = this.state;
+    const { repository, loading, issues } = this.state;
 
     if (loading) {
       return <Loading>Carregando</Loading>;

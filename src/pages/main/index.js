@@ -21,14 +21,16 @@ class Main extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    try {
-      this.setState({ loading: true });
+    this.setState({ loading: true, fail: false });
 
+    try {
       const { newRepo, repositories } = this.state;
 
-      const dupRepo = repositories.find(r => r.name === newRepo);
+      if (newRepo === '') throw new Error('Digite um repositório');
 
-      if (dupRepo) throw 'Repositório duplicado';
+      const dupRepo = repositories.find(index => index.name === newRepo);
+
+      if (dupRepo) throw new Error('Respositório Duplicado');
 
       const response = await api.get(`/repos/${newRepo}`);
 
